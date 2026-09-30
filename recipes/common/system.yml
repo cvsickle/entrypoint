@@ -9,6 +9,8 @@ modules:
         - chronyd.service
         - tailscaled
         - entrypoint-auto-update.timer
+        - log2ram.service
+        - log2ram-daily.timer
     user:
       enabled:
         - podman.socket
