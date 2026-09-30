@@ -3,7 +3,7 @@
 # image will be published to ghcr.io/<user>/<name>
 name: entrypoint
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: Entrypoint to your home network.
 
 # the base image to build on top of (FROM) and the version tag to use
 base-image: quay.io/fedora/fedora-bootc
@@ -25,11 +25,11 @@ modules:
   # Install packages.
   - from-file: common/packages.yml
 
-  # Update systemd configuration.
-  - from-file: common/system.yml
-
   # Misc setup.
   - from-file: common/misc.yml
+
+  # Update systemd configuration.
+  - from-file: common/system.yml
 
   # Update the os-release.
   - from-file: common/os-release.yml
