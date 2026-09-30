@@ -61,3 +61,15 @@ systemctl is-enabled tailscaled
 ```bash
 tailscale down
 ```
+
+## Reconnect After Reboot
+
+The image enables the `tailscaled` system service in [`recipes/common/system.yml`](../recipes/common/system.yml), so it starts automatically on every boot. The Fedora service stores Tailscale's node identity, login state, and preferences in `/var/lib/tailscale/tailscaled.state`. bootc preserves `/var` across image updates, so an automatic update reboot does not require logging in again. No additional `systemctl enable` command is needed.
+
+After a reboot, verify the service and connection with:
+
+```bash
+systemctl is-enabled tailscaled
+systemctl status tailscaled --no-pager
+tailscale status
+```
