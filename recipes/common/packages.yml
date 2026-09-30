@@ -8,9 +8,11 @@ modules:
       packages:
         # System utilities
         - chrony
+        - curl
         - podman
         - docker-cli
         - podman-compose
+        - rsync
 
   # Tailscale
   - type: dnf

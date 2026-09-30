@@ -7,7 +7,8 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
-        "/(^|/)install-tools\\.sh$/"
+        "/(^|/)install-tools\\.sh$/",
+        "/(^|/)install-log2ram\\.sh$/"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\w+_VERSION=\"(?<currentValue>.+?)\""

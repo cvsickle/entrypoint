@@ -47,4 +47,4 @@ jobs:
           pr_event_number: ${{ github.event.number }}
           maximize_build_space: true
           push: ${{ secrets.SIGNING_SECRET != '' }}
-          build_opts: ${{ secrets.SIGNING_SECRET == '' && '--no-sign' || ' ' }}
+          build_opts: ${{ secrets.SIGNING_SECRET == '' && '--no-sign --platform linux/amd64' || '--platform linux/amd64' }}

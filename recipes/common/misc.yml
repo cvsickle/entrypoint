@@ -5,3 +5,4 @@ modules:
   - type: script
     scripts:
       - set-host-defaults.sh
+      - install-log2ram.sh
