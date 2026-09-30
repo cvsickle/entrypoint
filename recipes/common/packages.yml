@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/module-list-v1.json
+
+modules:
+  # Fedora packages
+  - type: dnf
+    install:
+      packages:
+        # System utilities
+        - chrony
+        - podman
+        - docker-cli
+        - podman-compose
+
+  # Tailscale
+  - type: dnf
+    repos:
+      files:
+        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+      cleanup: true
+    install:
+      packages:
+        - tailscale
+
+  # Universal Blue
+  - type: dnf
+    repos:
+      copr:
+        - ublue-os/packages
+      cleanup: true
+    install:
+      packages:
+        - ublue-setup-services

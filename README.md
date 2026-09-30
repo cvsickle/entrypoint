@@ -1,38 +1,52 @@
-# entrypoint &nbsp; [![bluebuild build badge](https://github.com/cvsickle/entrypoint/actions/workflows/build.yml/badge.svg)](https://github.com/cvsickle/entrypoint/actions/workflows/build.yml)
+# Entrypoint
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+[![bluebuild build badge](https://github.com/cvsickle/entrypoint/actions/workflows/build.yml/badge.svg)](https://github.com/cvsickle/entrypoint/actions/workflows/build.yml) &nbsp; [![Dependabot Updates](https://github.com/cvsickle/entrypoint/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/cvsickle/entrypoint/actions/workflows/dependabot/dependabot-updates) &nbsp; [![renovate](https://github.com/cvsickle/entrypoint/actions/workflows/renovate.yml/badge.svg)](https://github.com/cvsickle/entrypoint/actions/workflows/renovate.yml) &nbsp; [![Repo sync (GitHub -> Codeberg)](https://github.com/cvsickle/entrypoint/actions/workflows/sync_codeberg.yaml/badge.svg)](https://github.com/cvsickle/entrypoint/actions/workflows/sync_codeberg.yaml)
 
-After setup, it is recommended you update this README to describe your custom image.
+---
+
+This repository is a custom [bootc](https://github.com/bootc-dev/bootc) image built on [fedora-bootc](https://gitlab.com/fedora/bootc).
+
+It was created using the [BlueBuild Workshop](https://workshop.blue-build.org/).
+
+## Changes made
+
+### System packages added
+
+- [Podman](https://github.com/podman-container-tools/podman)
+- [Docker CLI](https://github.com/docker/cli)
+- [Podman Compose](https://github.com/containers/podman-compose)
+- [Tailscale](https://tailscale.com/)
+  - See [docs/tailscale](./docs/tailscale.md) for setup info.
 
 ## Installation
 
-> [!WARNING]  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
+> [!TIP]
+> This process should work from any Fedora-based bootc image.
 
-To rebase an existing atomic Fedora installation to the latest build:
+- Once in the system, switch to this image.
 
-- First rebase to the unsigned image, to get the proper signing keys and policies installed:
-  ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/cvsickle/entrypoint:latest
-  ```
-- Reboot to complete the rebase:
-  ```
-  systemctl reboot
-  ```
-- Then rebase to the signed image, like so:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/cvsickle/entrypoint:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
+```bash
+sudo bootc switch ghcr.io/cvsickle/entrypoint:latest
 
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+# Reboot when done.
+systemctl reboot
+```
 
-## ISO
+- Once booted into this image, enable signing verification.
 
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/how-to/generate-iso/#_top). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
+```bash
+sudo bootc switch --enforce-container-sigpolicy ghcr.io/cvsickle/entrypoint:latest
+```
+
+- If the boot loader menu entries are still showing the upstream image name, force them to update.
+
+```bash
+sudo rpm-ostree kargs --append=bls.refresh=1
+systemctl reboot
+
+sudo rpm-ostree kargs --delete=bls.refresh=1
+systemctl reboot
+```
 
 ## Verification
 
@@ -41,3 +55,13 @@ These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](ht
 ```bash
 cosign verify --key cosign.pub ghcr.io/cvsickle/entrypoint
 ```
+
+## Repository Mirrors
+
+- GitHub - [https://github.com/cvsickle/entrypoint](https://github.com/cvsickle/entrypoint)
+
+## Other custom OS images
+
+- [Bazzite DX](https://github.com/cvsickle/bazzite-dx)
+- [Bluefin DX](https://github.com/cvsickle/bluefin-dx)
+- [Zirconium](https://github.com/cvsickle/zirconium)
