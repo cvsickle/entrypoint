@@ -1,35 +1,75 @@
 # Tailscale
 
-Tailscale is installed and setup.
+Tailscale is installed in the image. Its system service, `tailscaled`, is enabled at boot. The service runs as root because routing requires system network privileges; the `--operator` option lets your regular user manage it.
 
-## Connect
+## First Boot
 
-You probably want to set a specific hostname before connection.
-
-```bash
-sudo hostnamectl set-hostname your-new-hostname
-```
-
-To connect to your Tailscale network:
+Create an administrator account from the root console if your installation did not create one already. Replace `corey` with your chosen username:
 
 ```bash
-sudo tailscale up
+useradd --create-home --groups wheel --shell /bin/bash corey
+passwd corey
 ```
 
-This will give you a URL to complete the login.
+Log in as that user. The image defaults the hostname to `entrypoint` and the timezone to `America/New_York`. Override either value if needed:
+
+```bash
+sudo hostnamectl set-hostname entrypoint
+sudo timedatectl set-timezone America/New_York
+```
+
+The image enables IPv4 and IPv6 forwarding at boot for subnet routing and exit-node use.
+
+## Connect and Advertise Routes
+
+Find the LAN subnet connected to the device (for example, `192.168.1.0/24`) and replace the example route below. Run this as your regular user; `sudo` starts the initial connection and `--operator` grants that user permission to manage Tailscale afterward:
+
+```bash
+sudo tailscale up \
+ --operator="$USER" \
+ --advertise-routes=192.168.1.0/24 \
+ --advertise-exit-node
+```
+
+Open the login URL printed by the command and authenticate to your tailnet. The route and exit-node settings are saved by Tailscale and restored when `tailscaled` starts after a reboot.
+
+## Approve in Tailscale
+
+In the [Tailscale admin console](https://login.tailscale.com/admin/machines), open this device's route settings. Approve the advertised LAN subnet and enable **Use as exit node**. These are separate features: the subnet route provides access to devices on your LAN, while the exit node routes internet traffic through your home connection. Your tailnet access policy must also permit the intended traffic.
+
+Linux clients that should use the advertised LAN route must accept routes:
+
+```bash
+sudo tailscale set --accept-routes
+```
+
+Select this device as the exit node in the Tailscale client on any device whose internet traffic should go through home.
+
+## Check Status
+
+As the configured operator, check the connection without `sudo`:
+
+```bash
+tailscale status
+systemctl is-enabled tailscaled
+```
+
+`tailscaled` is enabled in the image, so no separate service setup is needed after reboot.
 
 ## Disconnect
 
-To disconnect.
-
 ```bash
-sudo tailscale down
+tailscale down
 ```
 
-## DMS Controls
+## Reconnect After Reboot
 
-To enable the DMS widget controls, set Tailscale to run as your user.
+The image enables the `tailscaled` system service in [`recipes/common/system.yml`](../recipes/common/system.yml), so it starts automatically on every boot. The Fedora service stores Tailscale's node identity, login state, and preferences in `/var/lib/tailscale/tailscaled.state`. bootc preserves `/var` across image updates, so an automatic update reboot does not require logging in again. No additional `systemctl enable` command is needed.
+
+After a reboot, verify the service and connection with:
 
 ```bash
-sudo tailscale set --operator=$USER
+systemctl is-enabled tailscaled
+systemctl status tailscaled --no-pager
+tailscale status
 ```

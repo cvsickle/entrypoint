@@ -1,0 +1,8 @@
+[Unit]
+Description=Check for and apply bootc updates
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bootc upgrade --apply
