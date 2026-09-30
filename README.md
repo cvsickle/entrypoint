@@ -4,6 +4,8 @@
 
 ---
 
+Ever need a quick, self-updating OS to use a lower-power edge device as a safe(ish) **entrypoint** to your home network? That's what I'm working on here.
+
 This repository is a custom [bootc](https://github.com/bootc-dev/bootc) image built on [fedora-bootc](https://gitlab.com/fedora/bootc).
 
 It was created using the [BlueBuild Workshop](https://workshop.blue-build.org/).
