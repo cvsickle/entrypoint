@@ -22,41 +22,7 @@ It was created using the [BlueBuild Workshop](https://workshop.blue-build.org/).
 
 ## Installation
 
-> [!TIP]
-> This process should work from any Fedora-based bootc image.
-
-- Once in the system, switch to this image.
-
-```bash
-sudo bootc switch ghcr.io/cvsickle/entrypoint:latest
-
-# Reboot when done.
-systemctl reboot
-```
-
-- Once booted into this image, enable signing verification.
-
-```bash
-sudo bootc switch --enforce-container-sigpolicy ghcr.io/cvsickle/entrypoint:latest
-```
-
-- If the boot loader menu entries are still showing the upstream image name, force them to update.
-
-```bash
-sudo rpm-ostree kargs --append=bls.refresh=1
-systemctl reboot
-
-sudo rpm-ostree kargs --delete=bls.refresh=1
-systemctl reboot
-```
-
-## Verification
-
-These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
-
-```bash
-cosign verify --key cosign.pub ghcr.io/cvsickle/entrypoint
-```
+See the [installation guide](./docs/installation.md) for Raspberry Pi and AMD64 setup, switching to Entrypoint, and verification.
 
 ## Repository Mirrors
 
