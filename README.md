@@ -6,6 +6,8 @@
 
 Ever need a quick, self-updating OS to use a lower-power edge device as a safe(ish) **entrypoint** to your home network? That's what I'm working on here.
 
+[Installation](./docs/installation.md)
+
 This repository is a custom [bootc](https://github.com/bootc-dev/bootc) image built on [fedora-bootc](https://gitlab.com/fedora/bootc).
 
 It was created using the [BlueBuild Workshop](https://workshop.blue-build.org/).
@@ -17,6 +19,7 @@ It was created using the [BlueBuild Workshop](https://workshop.blue-build.org/).
 - [Podman](https://github.com/podman-container-tools/podman)
 - [Docker CLI](https://github.com/docker/cli)
 - [Podman Compose](https://github.com/containers/podman-compose)
+- [log2ram](https://github.com/azlux/log2ram)
 - [Tailscale](https://tailscale.com/)
   - See [docs/tailscale](./docs/tailscale.md) for setup info.
 
