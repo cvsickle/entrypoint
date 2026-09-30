@@ -8,6 +8,7 @@ modules:
         - ublue-system-setup.service
         - chronyd.service
         - tailscaled
+        - entrypoint-auto-update.timer
     user:
       enabled:
         - podman.socket
