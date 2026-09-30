@@ -61,6 +61,8 @@ cosign verify --key cosign.pub ghcr.io/cvsickle/entrypoint
 ## Repository Mirrors
 
 - GitHub - [https://github.com/cvsickle/entrypoint](https://github.com/cvsickle/entrypoint)
+- Codeberg - [https://codeberg.org/cvsickle/entrypoint](https://codeberg.org/cvsickle/entrypoint)
+- Forgejo (Mirror) - [https://git.cvsickle.com/cvsickle/entrypoint](https://git.cvsickle.com/cvsickle/entrypoint)
 
 ## Other custom OS images
 
