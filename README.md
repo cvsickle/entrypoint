@@ -16,8 +16,7 @@ It was created using the [BlueBuild Workshop](https://workshop.blue-build.org/).
 
 ### System packages added
 
-- [Podman](https://github.com/podman-container-tools/podman)
-- [Docker CLI](https://github.com/docker/cli)
+- [Podman](https://github.com/podman-container-tools/podman) with Docker compatibility.
 - [Podman Compose](https://github.com/containers/podman-compose)
 - [log2ram](https://github.com/azlux/log2ram)
 - [Tailscale](https://tailscale.com/)
