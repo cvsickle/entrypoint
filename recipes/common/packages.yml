@@ -10,8 +10,9 @@ modules:
         - chrony
         - curl
         - podman
-        - docker-cli
+        - podman-docker
         - podman-compose
+        - docker-compose
         - rsync
 
   # Tailscale
