@@ -5,7 +5,7 @@ Entrypoint is a bootc image. Install Fedora IoT for your device first, then swit
 ## Raspberry Pi
 
 1. Download the Fedora IoT aarch64 raw image (`.raw.xz`) from [fedoraproject.org/iot/download](https://fedoraproject.org/iot/download/).
-2. Open Raspberry Pi Imager, select **Choose OS > Use Custom**, and select the downloaded raw image.
+2. Open Raspberry Pi Imager, select **Choose OS > Use Custom**, and select the downloaded raw image. You could also use the `arm-image-installer`, which is my preferred method. See [this guide](https://www.redhat.com/en/blog/fedora-iot-raspberry-pi).
 3. Select the MicroSD card, write the image, then insert it into the Raspberry Pi and boot.
 4. Configure Fedora IoT's first-boot provisioning to set up network access and an administrator account that can use `sudo`. See the [Fedora IoT documentation](https://docs.fedoraproject.org/en-US/iot/) for provisioning details.
 
