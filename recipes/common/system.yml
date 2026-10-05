@@ -9,6 +9,7 @@ modules:
         - chronyd.service
         - tailscaled
         - bootc-fetch-apply-updates.timer
+        - glances-web.service
         - log2ram.service
         - log2ram-daily.timer
     user:

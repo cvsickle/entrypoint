@@ -1,0 +1,11 @@
+[Unit]
+Description=Glances (web server mode)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/glances -w
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

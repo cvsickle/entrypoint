@@ -10,6 +10,7 @@ modules:
         - chrony
         - curl
         - fastfetch
+        - glances
         - podman
         - podman-docker
         - podman-compose
