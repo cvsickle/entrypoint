@@ -8,7 +8,7 @@ modules:
         - ublue-system-setup.service
         - chronyd.service
         - tailscaled
-        - entrypoint-auto-update.timer
+        - bootc-fetch-apply-updates.timer
         - log2ram.service
         - log2ram-daily.timer
     user:
