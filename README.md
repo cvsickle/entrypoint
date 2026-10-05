@@ -6,6 +6,8 @@
 
 Ever need a quick, self-updating OS to use a lower-power edge device as a safe(ish) **entrypoint** to your home network? That's what I'm working on here.
 
+It comes bundled with Tailscale, Podman (with Docker compatibility), and Log2Ram.
+
 [Installation](./docs/installation.md)
 
 This repository is a custom [bootc](https://github.com/bootc-dev/bootc) image built on [fedora-bootc](https://gitlab.com/fedora/bootc).
@@ -24,7 +26,7 @@ It was created using the [BlueBuild Workshop](https://workshop.blue-build.org/).
 
 ## Installation
 
-See the [installation guide](./docs/installation.md) for Raspberry Pi and AMD64 setup, switching to Entrypoint, and verification.
+See the [installation guide](./docs/installation.md) for ARM (Raspberry Pi) or AMD64 setup, switching to Entrypoint, and verification.
 
 ## Repository Mirrors
 
