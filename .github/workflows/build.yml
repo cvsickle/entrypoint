@@ -9,8 +9,7 @@ on:
     paths-ignore:
       - "**.md"
       - ".devcontainer/**"
-      - ".github/workflows/renovate.yaml"
-      - ".github/workflows/sync_codeberg.yaml"
+      - ".github/workflows/**"
       - "docs/**"
   workflow_dispatch: # allow manually triggering builds
 
