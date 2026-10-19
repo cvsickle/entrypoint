@@ -11,6 +11,7 @@ modules:
         - curl
         - fastfetch
         - glances
+        - iperf3
         - podman
         - podman-docker
         - podman-compose
