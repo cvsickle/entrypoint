@@ -6,6 +6,7 @@ modules:
     system:
       enabled:
         - ublue-system-setup.service
+        - entrypoint-enable-linger.service
         - chronyd.service
         - tailscaled
         - bootc-fetch-apply-updates.timer

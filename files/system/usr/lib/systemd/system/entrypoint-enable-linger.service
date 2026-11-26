@@ -1,0 +1,13 @@
+[Unit]
+Description=Enable systemd linger for all regular users
+After=systemd-logind.service
+Wants=systemd-logind.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# Invoked via bash so the script does not need the executable bit in the image.
+ExecStart=/bin/bash /usr/libexec/entrypoint-enable-linger
+
+[Install]
+WantedBy=multi-user.target
