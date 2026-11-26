@@ -25,6 +25,8 @@ It was created using the [BlueBuild Workshop](https://workshop.blue-build.org/).
   - See [docs/tailscale](./docs/tailscale.md) for setup info.
 - [Glances](https://nicolargo.github.io/glances/) - runs in web mode on port 61208 by default.
   - See [docs/glances](./docs/glances.md) for how to disable it or require a password for viewing it.
+- [Samba](https://www.samba.org/)
+  - See [docs/samba](./docs/samba.md) for setup instructions.
 
 ## Installation
 
