@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Enable systemd linger for every regular (human) user so their user services
+# (e.g. rootless podman) start at boot without a login.
+# UID range 1000-65533 matches the usual "normal user" range on Fedora/RHEL.
+
+while IFS=: read -r user _ uid _; do
+    if (( uid >= 1000 && uid < 65534 )); then
+        loginctl enable-linger "$user" || echo "entrypoint: failed to enable linger for $user" >&2
+    fi
+done < <(getent passwd)
+
+exit 0
