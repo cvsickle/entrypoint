@@ -17,6 +17,10 @@ modules:
         - podman-compose
         - docker-compose
         - rsync
+        - which
+        - samba
+        - firewalld
+        - policycoreutils-python-utils
 
   # Tailscale
   - type: dnf
