@@ -13,3 +13,10 @@ fi
 if ! grep -q '<masquerade/>' "$zone_file" 2>/dev/null; then
     firewall-offline-cmd --zone=public --add-masquerade
 fi
+
+# If firewalld is already running, it loaded the zone file before this hook ran.
+# Reload so the runtime state matches the permanent config. If firewalld is not
+# running yet, it will read the updated file when it starts.
+if systemctl is-active --quiet firewalld.service; then
+    firewall-cmd --reload
+fi
