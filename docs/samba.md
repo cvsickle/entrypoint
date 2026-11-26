@@ -96,8 +96,8 @@ testparm -s
 Fedora uses SELinux in enforcing mode. Samba can only serve directories labeled with the `samba_share_t` type. Label the share directory and apply the label:
 
 ```bash
-sudo semanage fcontext -a -t samba_share_t "/home/corey/podman(/.*)?"
-sudo restorecon -Rv /home/corey/podman
+sudo semanage fcontext -a -t samba_share_t "/var/home/corey/podman(/.*)?"
+sudo restorecon -Rv /var/home/corey/podman
 ```
 
 Verify the label:
@@ -123,8 +123,6 @@ sudo firewall-cmd --permanent --add-service=samba
 sudo firewall-cmd --reload
 ```
 
-Traffic arriving over Tailscale (`tailscale0`) is handled by the `trusted` zone, so no extra rule is needed for tailnet clients.
-
 ## 7. Start and enable Samba
 
 ```bash
@@ -140,21 +138,7 @@ Check the status:
 sudo systemctl status smb.service
 ```
 
-## 8. Test the share
-
-From the Entrypoint device, verify the share lists and authenticates. Install `samba-client` first if it is not in the image, or test from another machine:
-
-```bash
-smbclient -L localhost -U corey
-```
-
-Connect to the share:
-
-```bash
-smbclient //localhost/podman -U corey
-```
-
-## 9. Connect from a client
+## 8. Connect from a client
 
 Use the device's hostname or IP address (or its Tailscale name/IP):
 
