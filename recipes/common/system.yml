@@ -7,7 +7,6 @@ modules:
       enabled:
         - ublue-system-setup.service
         - chronyd.service
-        - firewalld.service
         - tailscaled
         - bootc-fetch-apply-updates.timer
         - glances-web.service

@@ -19,7 +19,6 @@ modules:
         - rsync
         - which
         - samba
-        - firewalld
         - policycoreutils-python-utils
 
   # Tailscale

@@ -53,7 +53,7 @@ Fedora's `samba-common` package ships a default `/etc/samba/smb.conf`. Replace i
 
 ```ini
 [global]
-   workgroup = WORKGROUP
+   workgroup = WORKGROUPthe firewall rule (`sudo firewall-cmd --list-services`) and
    server string = Entrypoint
    server role = standalone server
    security = user
@@ -108,22 +108,7 @@ ls -Zd /home/corey/podman
 
 The output should include `samba_share_t`.
 
-## 6. Open the firewall
-
-Fedora uses `firewalld`. The image's `system-setup` hook (`files/system/usr/share/ublue-os/system-setup.hooks.d/10-firewall.sh`) already adds the `samba` service to the public zone. Confirm it:
-
-```bash
-sudo firewall-cmd --list-services
-```
-
-If `samba` is missing, add it manually:
-
-```bash
-sudo firewall-cmd --permanent --add-service=samba
-sudo firewall-cmd --reload
-```
-
-## 7. Start and enable Samba
+## 6. Start and enable Samba
 
 ```bash
 sudo systemctl enable --now smb.service nmb.service
@@ -138,7 +123,7 @@ Check the status:
 sudo systemctl status smb.service
 ```
 
-## 8. Connect from a client
+## 7. Connect from a client
 
 Use the device's hostname or IP address (or its Tailscale name/IP):
 
@@ -153,7 +138,7 @@ Use the Samba password from step 2 when prompted.
 - **Authentication fails:** confirm the user exists in Linux (`id corey`) and in Samba (`sudo pdbedit -L`).
 - **Permission denied on files:** check ownership with `ls -la /home/corey/podman` and confirm the SELinux label with `ls -Zd /home/corey/podman`.
 - **Logs:** `sudo journalctl -u smb.service` and `/var/log/samba/`.
-- **Share not visible from a client:** confirm the firewall rule (`sudo firewall-cmd --list-services`) and that `smb.service` is running.
+- **Share not visible from a client:** confirm that `smb.service` is running.
 
 ## Disable
 
