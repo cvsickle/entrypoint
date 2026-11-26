@@ -13,10 +13,48 @@ Entrypoint is a bootc image. Install Fedora IoT for your device first, then swit
 
 ## AMD64
 
-1. On [fedoraproject.org/iot/download](https://fedoraproject.org/iot/download/), download the x86_64 ISO labeled **Simplified Provisioner**.
+1. On [fedoraproject.org/iot/download](https://fedoraproject.org/iot/download/), download the x86_64 ISO.
 2. Open Fedora Media Writer, choose the downloaded ISO as a custom image, and write it to a USB drive.
 3. Boot the computer from the USB drive and follow the provisioner to install Fedora IoT.
 4. Ensure the system has network access and an administrator account that can use `sudo`.
+
+## Proxmox
+
+1. Add the x86_64 ISO from [fedoraproject.org/iot/download](https://fedoraproject.org/iot/download/) to the a Proxmox node's ISO images.
+2. Create a VM with the [settings](#vm-settings) below.
+3. Boot the VM and follow the provisioner to install Fedora IoT.
+4. Ensure the system has network access and an administrator account that can use `sudo`.
+
+### VM Settings
+
+#### System
+
+- Guest OS type: `Linux`, `7.x kernel`
+- Machine: `q35`
+- BIOS: `OVMF (UEFI)`
+- Add EFI Disk: checked.
+- Pre-Enroll keys: checked.
+- SCSI Controller: `VirtIO SCSI single`
+- Qemu Agent: optional. It's useful once installed.
+
+#### Disks
+
+- Bus: `SCSI`
+- Disk size (GiB): at least 20–32 GB.
+- Discard: checked.
+
+#### CPU / Memory
+
+- Cores: at least 2.
+- Type: `host` or `x86-64-v2-AES`
+- Memory (MiB): at least 2048. Preferrably 4096.
+- Ballooning: unchecked.
+
+#### Network
+
+- Model: `VirtIO (paravirtualized)`
+
+---
 
 ## Switch to Entrypoint
 
